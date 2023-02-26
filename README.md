@@ -21,7 +21,7 @@ Windows, so there are no guarantees that it will compile in Linux.
 
 | Name | Description |
 |------|-------------|
-| viewer | A simple viewer for GLTF files |
+| [viewer](https://github.com/marovira/gfx_sandbox/tree/master/gallery/viewer) | A simple viewer for GLTF files |
 
 ## License
 
