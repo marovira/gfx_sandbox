@@ -1,6 +1,6 @@
 function(create_gallery_entry)
     set(options EXECUTABLE LIBRARY USE_PUBLIC SKIP_FLAGS)
-    set(oneValueArgs TARGET ROOT)
+    set(oneValueArgs TARGET ROOT FOLDER)
     set(multiValueArgs SOURCES LIB DEFINES)
     cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -59,12 +59,12 @@ function(create_gallery_entry)
         endif()
     endif()
 
-    set_target_properties(${ARG_TARGET} PROPERTIES FOLDER "${ARG_TARGET}")
+    set_target_properties(${ARG_TARGET} PROPERTIES FOLDER ${ARG_FOLDER})
 endfunction()
 
 function(create_spv_target)
     set(options)
-    set(oneValueArgs TARGET OUTPUT)
+    set(oneValueArgs TARGET OUTPUT FOLDER)
     set(multiValueArgs SOURCES)
     cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -89,5 +89,5 @@ function(create_spv_target)
         COMMAND ${CMAKE_COMMAND} -E copy_directory ${SPV_BUILD_ROOT}
         "$<TARGET_FILE_DIR:${ARG_TARGET}>/spv"
         )
-    set_target_properties(${SPV_TARGET} PROPERTIES FOLDER "${ARG_TARGET}")
+    set_target_properties(${SPV_TARGET} PROPERTIES FOLDER ${ARG_FOLDER})
 endfunction()
