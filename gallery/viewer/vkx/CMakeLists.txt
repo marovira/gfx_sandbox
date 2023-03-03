@@ -15,5 +15,6 @@ create_gallery_entry(
         glm::glm
         vk-bootstrap::vk-bootstrap
         VulkanMemoryAllocator
+        glfw
     )
 
