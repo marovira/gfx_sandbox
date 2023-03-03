@@ -94,10 +94,13 @@ namespace vkx
         alloc_info.device                 = to_vk_type(m_device);
         alloc_info.instance               = instance;
 
-        if (vmaCreateAllocator(&alloc_info, &m_allocator) != VK_SUCCESS)
-        {
-            throw std::runtime_error{"error: unable to initialise VMA"};
-        }
+        m_allocator = std::make_unique<Allocator>(alloc_info);
+    }
+
+    Context::~Context()
+    {
+        m_allocator->free();
+        m_allocator = nullptr;
     }
 
 } // namespace vkx

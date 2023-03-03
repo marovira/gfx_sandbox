@@ -1,9 +1,7 @@
 #pragma once
 
+#include "allocator.hpp"
 #include "types.hpp"
-#include "vulkan.hpp"
-
-#include <vk_mem_alloc.h>
 
 #include <functional>
 #include <memory>
@@ -16,6 +14,7 @@ namespace vkx
     {
     public:
         Context(GLFWwindow* window);
+        ~Context();
 
     private:
         std::unique_ptr<vk::raii::Context> m_vk_context;
@@ -28,6 +27,6 @@ namespace vkx
         vk::PhysicalDeviceProperties m_device_properties;
 
         Queue m_graphics_queue;
-        VmaAllocator m_allocator{nullptr};
+        std::unique_ptr<Allocator> m_allocator;
     };
 } // namespace vkx
