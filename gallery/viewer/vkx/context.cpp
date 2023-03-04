@@ -1,10 +1,10 @@
 #include "context.hpp"
 #include "type_cast.hpp"
+#include "vk_bootstrap.hpp"
 
 #include <GLFW/glfw3.h>
 
 #include <fmt/printf.h>
-#include <VkBootstrap.h>
 #include <zeus/assert.hpp>
 #include <zeus/platform.hpp>
 
@@ -26,19 +26,6 @@ namespace vkx
         }
 
         return 0;
-    }
-
-    template<typename T>
-    T get_safe_vkb_result(vkb::detail::Result<T> const& ret)
-    {
-        if (ret)
-        {
-            return *ret;
-        }
-
-        auto code = ret.error();
-        auto msg  = fmt::format("({}): {}", code.value(), code.message());
-        throw std::runtime_error{msg.c_str()};
     }
 
     Context::Context(GLFWwindow* window) :
